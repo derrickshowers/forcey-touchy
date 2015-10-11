@@ -1,0 +1,22 @@
+{
+  "name": "forcey-touchy",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-sass": "^2.0.4",
+    "gulp-util": "^3.0.6",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0",
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "jquery": "^2.1.4"
+  }
+}
