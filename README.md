@@ -1,6 +1,6 @@
 # Force Touchy
 
-Simple example of 3D Touch interactions in JavaScript. Checkout the [demo](http://forceytouchy.dev.derrickshowers.com).
+Simple example of 3D Touch interactions in JavaScript. Checkout the [demo](http://forceytouchy.dev.derrickshowers.com) (make sure you're on a iPhone 6s - not a very exciting demo without the correct hardware).
 
 ## Installation
 
