@@ -39,26 +39,60 @@ p {
     -webkit-transition: all 0.25s;
   }
 }
-
-.github-link {
+.options-container {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 50px;
+  width: 100%;
   color: #333;
-  text-decoration: none;
-  line-height: 50px;
-  text-align: center;
   z-index: 10;
-  &:after {
-    height: 100%;
+  ul {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    background-color: #EDEDED;
+    line-height: 50px;
+    padding: 0;
+    list-style: none;
+    width: 90%;
+    margin: 5px 5%;
+    border: #BCD8E2 2px solid;
+    border-radius: 5px;
+    li {
+      text-align: center;
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+    }
+  }
+  .options {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: none;
+    text-decoration: none;
+    line-height: 50px;
+    text-align: center;
+    border: none;
     width: 100%;
-    content: ' ';
+    &.selected {
+      + ul {
+        display: block;
+      }
+    }
+  }
+  &:after {
+    width: 100%;
+    height: 100%;
     display: block;
-    background-color: #FFF;
-    opacity: .4;
+    background-color: #333;
     position: absolute;
     top: 0;
+    content: '';
     z-index: -1;
+    opacity: 0.5;
   }
 }

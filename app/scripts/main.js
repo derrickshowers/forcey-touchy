@@ -11,8 +11,8 @@ let barElHeight;
 let $bar;
 
 function addEventListeners() {
-  $('.touch-container').on('touchstart', touchHandler);
-  $('.touch-container').on('touchmove', touchHandler);
+  $('.touch-container').on('touchstart', containerTouched);
+  $('.options').on('touchstart', optionsTouched);
 }
 
 function updateBar() {
@@ -25,26 +25,61 @@ function resetBar() {
   $bar.css('background', `rgba(0, ${COLOR_MAX_VALUE}, 0, ${BAR_OPACITY})`);
 }
 
-function touchHandler(evt) {
+function touchChecker(props) {
   let touchActive = true;
-  let touchChecker;
-
-  evt = evt.originalEvent;
+  let _touchChecker;
 
   function getHeightAndUpdate() {
-    progressBar.barHeight = evt.touches[0].force;
-    updateBar();
+    props.whileTouching();
     if (touchActive) {
       window.requestAnimationFrame(getHeightAndUpdate);
     } else {
-      resetBar();
+      props.doneTouching();
     }
   }
 
-  touchChecker = window.requestAnimationFrame(getHeightAndUpdate);
+  _touchChecker = window.requestAnimationFrame(getHeightAndUpdate);
 
-  $('.touch-container').on('touchend', () => {
+  props.$el.on('touchend', () => {
     touchActive = false;
+  });
+}
+
+function containerTouched(evt) {
+  evt = evt.originalEvent;
+  touchChecker({
+    $el: $('.touch-container'),
+    whileTouching() {
+      progressBar.barHeight = evt.touches[0].force;
+      updateBar();
+    },
+    doneTouching() {
+      resetBar();
+    }
+  });
+}
+
+function optionsTouched(evt) {
+  let $el = $('.options');
+  let forced = false;
+  evt.preventDefault();
+  evt = evt.originalEvent;
+  touchChecker({
+    $el,
+    whileTouching() {
+      if (evt.touches[0].force >= 1) {
+        $el.addClass('selected');
+        $el.text('Tap to dismiss');
+        forced = true;
+      } else if (!forced) {
+        $el.removeClass('selected');
+        $el.text('Force touch for options');
+        forced = false;
+      }
+    },
+    doneTouching() {
+      // we don't need to do anything when finished
+    }
   });
 }
 
